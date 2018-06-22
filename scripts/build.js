@@ -8,7 +8,7 @@ const uglify = require('uglify-js')
 if (!fs.existsSync('dist')) {
   fs.mkdirSync('dist')
 }
-
+// 获取构建配置
 let builds = require('./config').getAllBuilds()
 
 // filter builds via command line arg

@@ -8,6 +8,7 @@ const flow = require('rollup-plugin-flow-no-whitespace')
 const version = process.env.VERSION || require('../package.json').version
 const weexVersion = process.env.WEEX_VERSION || require('../packages/weex-vue-framework/package.json').version
 
+// 注释信息
 const banner =
   '/*!\n' +
   ' * Vue.js v' + version + '\n' +
@@ -39,7 +40,7 @@ const builds = {
   'web-runtime-cjs': {
     entry: resolve('web/entry-runtime.js'),
     dest: resolve('dist/vue.runtime.common.js'),
-    format: 'cjs',
+    format: 'cjs', // 格式
     banner
   },
   // Runtime+compiler CommonJS build (CommonJS)
@@ -170,7 +171,7 @@ const builds = {
 
 function genConfig (name) {
   const opts = builds[name]
-  const config = {
+  const config = { // 配置rollup打包所需配置
     input: opts.entry,
     external: opts.external,
     plugins: [
