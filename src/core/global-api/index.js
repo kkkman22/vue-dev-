@@ -1,12 +1,25 @@
 /* @flow */
 
 import config from '../config'
-import { initUse } from './use'
-import { initMixin } from './mixin'
-import { initExtend } from './extend'
-import { initAssetRegisters } from './assets'
-import { set, del } from '../observer/index'
-import { ASSET_TYPES } from 'shared/constants'
+import {
+  initUse
+} from './use'
+import {
+  initMixin
+} from './mixin'
+import {
+  initExtend
+} from './extend'
+import {
+  initAssetRegisters
+} from './assets'
+import {
+  set,
+  del
+} from '../observer/index'
+import {
+  ASSET_TYPES
+} from 'shared/constants'
 import builtInComponents from '../components/index'
 
 import {
@@ -17,7 +30,10 @@ import {
   defineReactive
 } from '../util/index'
 
-export function initGlobalAPI (Vue: GlobalAPI) {
+// Vue.js 在整个初始化过程中，除了给它的原型 prototype 上扩展方法，还会给 Vue 这个对象本身扩展
+
+// 全局的静态方法
+export function initGlobalAPI(Vue: GlobalAPI) {
   // config
   const configDef = {}
   configDef.get = () => config
@@ -33,6 +49,7 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   // exposed util methods.
   // NOTE: these are not considered part of the public API - avoid relying on
   // them unless you are aware of the risk.
+  //  不推荐使用的方法
   Vue.util = {
     warn,
     extend,

@@ -1,24 +1,47 @@
 /* @flow */
 
 import config from '../config'
-import { initProxy } from './proxy'
-import { initState } from './state'
-import { initRender } from './render'
-import { initEvents } from './events'
-import { mark, measure } from '../util/perf'
-import { initLifecycle, callHook } from './lifecycle'
-import { initProvide, initInjections } from './inject'
-import { extend, mergeOptions, formatComponentName } from '../util/index'
+import {
+  initProxy
+} from './proxy'
+import {
+  initState
+} from './state'
+import {
+  initRender
+} from './render'
+import {
+  initEvents
+} from './events'
+import {
+  mark,
+  measure
+} from '../util/perf'
+import {
+  initLifecycle,
+  callHook
+} from './lifecycle'
+import {
+  initProvide,
+  initInjections
+} from './inject'
+import {
+  extend,
+  mergeOptions,
+  formatComponentName
+} from '../util/index'
 
 let uid = 0
 
-export function initMixin (Vue: Class<Component>) {
-  Vue.prototype._init = function (options?: Object) {
+export function initMixin(Vue: Class < Component > ) {
+
+  //  new Vue实现的初始化过程
+  Vue.prototype._init = function (options ? : Object) {
     const vm: Component = this
     // a uid
     vm._uid = uid++
 
-    let startTag, endTag
+      let startTag, endTag
     /* istanbul ignore if */
     if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
       startTag = `vue-perf-start:${vm._uid}`
@@ -64,14 +87,14 @@ export function initMixin (Vue: Class<Component>) {
       mark(endTag)
       measure(`vue ${vm._name} init`, startTag, endTag)
     }
-
+    // 挂载节点
     if (vm.$options.el) {
-      vm.$mount(vm.$options.el)
+      vm.$mount(vm.$options.el) // $mount方法定义在src\platforms\web\runtime\index.js中
     }
   }
 }
 
-export function initInternalComponent (vm: Component, options: InternalComponentOptions) {
+export function initInternalComponent(vm: Component, options: InternalComponentOptions) {
   const opts = vm.$options = Object.create(vm.constructor.options)
   // doing this because it's faster than dynamic enumeration.
   const parentVnode = options._parentVnode
@@ -90,7 +113,7 @@ export function initInternalComponent (vm: Component, options: InternalComponent
   }
 }
 
-export function resolveConstructorOptions (Ctor: Class<Component>) {
+export function resolveConstructorOptions(Ctor: Class < Component > ) {
   let options = Ctor.options
   if (Ctor.super) {
     const superOptions = resolveConstructorOptions(Ctor.super)
@@ -114,7 +137,7 @@ export function resolveConstructorOptions (Ctor: Class<Component>) {
   return options
 }
 
-function resolveModifiedOptions (Ctor: Class<Component>): ?Object {
+function resolveModifiedOptions(Ctor: Class < Component > ): ? Object {
   let modified
   const latest = Ctor.options
   const extended = Ctor.extendOptions
@@ -128,7 +151,7 @@ function resolveModifiedOptions (Ctor: Class<Component>): ?Object {
   return modified
 }
 
-function dedupe (latest, extended, sealed) {
+function dedupe(latest, extended, sealed) {
   // compare latest and sealed to ensure lifecycle hooks won't be duplicated
   // between merges
   if (Array.isArray(latest)) {
