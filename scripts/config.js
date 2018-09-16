@@ -40,7 +40,7 @@ const builds = {
   'web-runtime-cjs': {
     entry: resolve('web/entry-runtime.js'),
     dest: resolve('dist/vue.runtime.common.js'),
-    format: 'cjs', // 格式
+    format: 'cjs', // 表示构建的格式
     banner
   },
   // Runtime+compiler CommonJS build (CommonJS)
